@@ -31,10 +31,10 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Create
 
         public async Task<Result<int>> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
         {
-            var product = _mapper.Map<Brand>(request);
-            await _brandRepository.InsertAsync(product);
+            var brand = _mapper.Map<Brand>(request);
+            await _brandRepository.InsertAsync(brand);
             await _unitOfWork.Commit(cancellationToken);
-            return Result<int>.Success(product.Id);
+            return Result<int>.Success(brand.Id);
         }
     }
 }
