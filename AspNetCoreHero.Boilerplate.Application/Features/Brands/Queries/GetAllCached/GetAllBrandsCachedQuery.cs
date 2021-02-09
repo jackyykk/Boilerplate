@@ -20,9 +20,9 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllC
         private readonly IBrandCacheRepository _brandCache;
         private readonly IMapper _mapper;
 
-        public GetAllBrandsCachedQueryHandler(IBrandCacheRepository productCache, IMapper mapper)
+        public GetAllBrandsCachedQueryHandler(IBrandCacheRepository brandCache, IMapper mapper)
         {
-            _brandCache = productCache;
+            _brandCache = brandCache;
             _mapper = mapper;
         }
 
