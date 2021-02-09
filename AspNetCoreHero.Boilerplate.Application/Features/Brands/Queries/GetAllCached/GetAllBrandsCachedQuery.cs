@@ -17,18 +17,18 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllC
 
     public class GetAllBrandsCachedQueryHandler : IRequestHandler<GetAllBrandsCachedQuery, Result<List<GetAllBrandsCachedResponse>>>
     {
-        private readonly IBrandCacheRepository _productCache;
+        private readonly IBrandCacheRepository _brandCache;
         private readonly IMapper _mapper;
 
         public GetAllBrandsCachedQueryHandler(IBrandCacheRepository productCache, IMapper mapper)
         {
-            _productCache = productCache;
+            _brandCache = productCache;
             _mapper = mapper;
         }
 
         public async Task<Result<List<GetAllBrandsCachedResponse>>> Handle(GetAllBrandsCachedQuery request, CancellationToken cancellationToken)
         {
-            var brandList = await _productCache.GetCachedListAsync();
+            var brandList = await _brandCache.GetCachedListAsync();
             var mappedBrands = _mapper.Map<List<GetAllBrandsCachedResponse>>(brandList);
             return Result<List<GetAllBrandsCachedResponse>>.Success(mappedBrands);
         }
