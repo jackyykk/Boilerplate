@@ -25,11 +25,11 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
 
     public class GGetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, PaginatedResult<GetAllProductsResponse>>
     {
-        private readonly IProductRepository _repository;
+        private readonly IProductRepository _productRepository;
 
         public GGetAllProductsQueryHandler(IProductRepository repository)
         {
-            _repository = repository;
+            _productRepository = repository;
         }
 
         public async Task<PaginatedResult<GetAllProductsResponse>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
@@ -42,7 +42,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
                 Rate = e.Rate,
                 Barcode = e.Barcode
             };
-            var paginatedList = await _repository.Products
+            var paginatedList = await _productRepository.Products
                 .Select(expression)
                 .ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return paginatedList;
